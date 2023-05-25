@@ -80,8 +80,8 @@ RSpec.describe LinkedList do
 
       expect(@list.to_string).to eq('plop')
 
-      @list.append("suu")
-      @list.prepend("dop")
+      @list.append('suu')
+      @list.prepend('dop')
 
       expect(@list.to_string).to eq('dop plop suu')
       expect(@list.count).to eq(3)
@@ -91,11 +91,52 @@ RSpec.describe LinkedList do
   describe '#insert' do
     it 'can insert an element at a given position' do
       @list.append('plop')
-      @list.append("suu")
-      @list.prepend("dop")
-      @list.insert(1, "woo")
+      @list.append('suu')
+      @list.prepend('dop')
+      @list.insert(1, 'woo')
       
       expect(@list.to_string).to eq('dop woo plop suu')
+    end
+  end
+
+  describe '#find' do
+    it 'can find a node and return a number of elements after it' do
+      @list.append('deep')
+      @list.append('woo')
+      @list.append('shi')
+      @list.append('shu')
+      @list.append('blop')
+
+      expect(@list.to_string).to eq('deep woo shi shu blop')
+      expect(@list.find(2, 1)).to eq('shi')
+      expect(@list.find(1, 3)).to eq('woo shi shu')
+    end
+  end
+
+  describe '#includes?' do
+    it 'returns true or false if the list includes the supplied value' do
+      @list.append('deep')
+      @list.append('woo')
+      @list.append('shi')
+      @list.append('shu')
+      @list.append('blop')
+
+      expect(@list.includes?('deep')).to eq(true)
+      expect(@list.includes?('dep')).to eq(false)
+    end
+  end
+
+  describe '#pop' do
+    it 'removes the last element in the list' do
+      @list.append('deep')
+      @list.append('woo')
+      @list.append('shi')
+      @list.append('shu')
+      @list.append('blop')
+  
+      expect(@list.pop).to eq('blop')
+      expect(@list.pop).to eq('shu')
+      expect(@list.to_string).to eq('deep woo shi')
     end
   end
 end

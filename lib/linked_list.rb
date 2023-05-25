@@ -16,11 +16,10 @@ class LinkedList
   def find_tail
     current = @head
 
-    if !current.next_node
-      return current
-    else
+    while current.next_node
       current = current.next_node
     end
+    return current
   end
 
   def prepend(data)
@@ -35,7 +34,7 @@ class LinkedList
   end
 
   def insert(index, data)
-    current = find_node(index)
+    current = find_node(index - 1)
     new_node = Node.new(data)
 
     if current.next_node
@@ -47,7 +46,7 @@ class LinkedList
   def find_node(index)
     current = @head
 
-    (index - 1).times do
+    index.times do
       if current.next_node
         current = current.next_node
       end
@@ -57,23 +56,49 @@ class LinkedList
 
   def count
     count = 0
-    node = @head
+    current = @head
 
-    while node
+    while current
       count += 1
-      node = node.next_node
+      current = current.next_node
     end
     return count
   end
 
   def to_string
     string = ''
-    node = @head
+    current = @head
 
-    while node
-      string += node.data + ' '
-      node = node.next_node
+    while current
+      string += current.data + ' '
+      current = current.next_node
     end
     return string.rstrip
+  end
+
+  def find(index, num)
+    current = find_node(index)
+    string = ''
+
+    num.times do
+      string += current.data + ' '
+      current = current.next_node
+    end
+    return string.rstrip
+  end
+
+  def includes?(value)
+    to_string.include?(value)
+  end
+
+  def pop
+    tail = find_tail
+    current = @head
+
+    while current.next_node != tail
+      current = current.next_node
+    end
+    current.next_node = nil
+    return tail.data
   end
 end
