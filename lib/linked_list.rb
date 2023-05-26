@@ -19,7 +19,7 @@ class LinkedList
     while current.next_node
       current = current.next_node
     end
-    return current
+    current
   end
 
   def prepend(data)
@@ -51,7 +51,7 @@ class LinkedList
         current = current.next_node
       end
     end
-    return current
+    current
   end
 
   def count
@@ -62,7 +62,7 @@ class LinkedList
       count += 1
       current = current.next_node
     end
-    return count
+    count
   end
 
   def to_string
@@ -73,7 +73,7 @@ class LinkedList
       string += current.data + ' '
       current = current.next_node
     end
-    return string.rstrip
+    string.rstrip
   end
 
   def find(index, num)
@@ -84,7 +84,7 @@ class LinkedList
       string += current.data + ' '
       current = current.next_node
     end
-    return string.rstrip
+    string.rstrip
   end
 
   def includes?(value)
@@ -99,6 +99,6 @@ class LinkedList
       current = current.next_node
     end
     current.next_node = nil
-    return tail.data
+    tail.data
   end
 end
